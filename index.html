@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#c9f6eb">
+  <title>Dunedin School of Art</title>
+  <script>document.documentElement.classList.add('js-enabled');</script>
+  <style>
+    :root { color-scheme: light; background: #c9f6eb; --fade-duration: 40ms; }
+    * { box-sizing: border-box; }
+    html, body { width: 100%; min-height: 100%; margin: 0; }
+    body { min-height: 100vh; min-height: 100svh; overflow: hidden; background: #c9f6eb; cursor: default; }
+    #scene { position: relative; display: flex; justify-content: center; align-items: flex-start; width: 100%; min-height: 100vh; min-height: 100svh; }
+    .DSA-logo { display: block; flex: none; width: clamp(240px, 32vw, 320px); height: auto; overflow: visible; }
+    .logo-text { z-index: 9; }
+    .js-enabled .logo-dot:not(.is-visible) { display: none; }
+    .logo-dot, .extra-dot { transition: opacity var(--fade-duration) ease; cursor: default; outline: none; }
+    .logo-dot:focus, .logo-dot:focus-visible { outline: none; filter: none; }
+    [role="button"] { -webkit-tap-highlight-color: transparent; }
+    .extra-dot, .loose-dot { position: absolute; width: var(--dot-diameter); height: var(--dot-diameter); border-radius: 50%; transform: translate(-50%, -50%); cursor: default; outline: none; }
+    .extra-dot { pointer-events: auto; }
+    .loose-dot { z-index: 3; pointer-events: none; will-change: left, top; }
+    .is-disappearing { opacity: 0 !important; pointer-events: none !important; }
+    #dot-field { position: fixed; z-index: 2; inset: 0; overflow: hidden; pointer-events: none; }
+    [class^="letter-"] { transition: 0.1s ease-in-out; }
+
+  </style>
+</head>
+<body>
+  <main id="scene" aria-label="Animated DSA logo">
+    <svg id="logo" class="DSA-logo" role="group" aria-label="Dunedin School of Art" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320">
+      <rect x="25" width="270" height="250" style="fill:#fffa89;"/>
+      <path d="M16.475,49.981c0-1.825.343-3.558,1.028-5.196s1.634-3.064,2.853-4.284c1.219-1.219,2.646-2.172,4.288-2.857,1.634-.685,3.367-1.028,5.196-1.028s3.562.343,5.2,1.028c1.638.685,3.064,1.638,4.284,2.857,1.219,1.219,2.172,2.646,2.857,4.284s1.028,3.371,1.028,5.196-.343,3.562-1.028,5.2-1.638,3.068-2.857,4.284c-1.219,1.219-2.646,2.172-4.284,2.857-1.638.685-3.371,1.028-5.2,1.028s-3.562-.343-5.196-1.028c-1.642-.685-3.068-1.638-4.288-2.857-1.219-1.215-2.168-2.646-2.853-4.284s-1.028-3.371-1.028-5.2Z" style="fill:#404040;" class="logo-dot is-visible" data-dot-index="0" tabindex="-1"/>
+      <path d="M16.475,92.756c0-1.825.343-3.558,1.028-5.196s1.634-3.064,2.853-4.284c1.219-1.219,2.646-2.172,4.288-2.857,1.634-.685,3.367-1.028,5.196-1.028s3.562.343,5.2,1.028c1.638.685,3.064,1.638,4.284,2.857,1.219,1.219,2.172,2.646,2.857,4.284s1.028,3.371,1.028,5.196-.343,3.562-1.028,5.2-1.638,3.068-2.857,4.284c-1.219,1.219-2.646,2.172-4.284,2.857-1.638.685-3.371,1.028-5.2,1.028s-3.562-.343-5.196-1.028c-1.642-.685-3.068-1.638-4.288-2.857-1.219-1.215-2.168-2.646-2.853-4.284s-1.028-3.371-1.028-5.2Z" style="fill:#404040;" class="logo-dot" data-dot-index="1" tabindex="-1"/>
+      <path d="M16.475,135.531c0-1.825.343-3.558,1.028-5.196.685-1.638,1.634-3.064,2.853-4.284s2.646-2.172,4.288-2.857c1.634-.685,3.367-1.028,5.196-1.028s3.562.343,5.2,1.028c1.638.685,3.064,1.638,4.284,2.857,1.219,1.219,2.172,2.646,2.857,4.284.685,1.638,1.028,3.371,1.028,5.196s-.343,3.562-1.028,5.2-1.638,3.068-2.857,4.284c-1.219,1.219-2.646,2.172-4.284,2.857s-3.371,1.028-5.2,1.028-3.562-.343-5.196-1.028c-1.642-.685-3.068-1.638-4.288-2.857-1.219-1.215-2.168-2.646-2.853-4.284-.685-1.638-1.028-3.371-1.028-5.2Z" style="fill:#404040;" class="logo-dot" data-dot-index="2" tabindex="-1"/>
+      <path d="M16.475,178.306c0-1.825.343-3.558,1.028-5.196.685-1.638,1.634-3.064,2.853-4.284,1.219-1.219,2.646-2.172,4.288-2.857,1.634-.685,3.367-1.028,5.196-1.028s3.562.343,5.2,1.028c1.638.685,3.064,1.638,4.284,2.857,1.219,1.219,2.172,2.646,2.857,4.284s1.028,3.371,1.028,5.196-.343,3.562-1.028,5.2-1.638,3.068-2.857,4.284c-1.219,1.219-2.646,2.172-4.284,2.857-1.638.685-3.371,1.028-5.2,1.028s-3.562-.343-5.196-1.028c-1.642-.685-3.068-1.638-4.288-2.857-1.219-1.215-2.168-2.646-2.853-4.284-.685-1.638-1.028-3.371-1.028-5.2Z" style="fill:#404040;" class="logo-dot" data-dot-index="3" tabindex="-1"/>
+      <path d="M16.475,221.081c0-1.825.343-3.558,1.028-5.196.685-1.638,1.634-3.064,2.853-4.284s2.646-2.172,4.288-2.857c1.634-.685,3.367-1.028,5.196-1.028s3.562.343,5.2,1.028c1.638.685,3.064,1.638,4.284,2.857,1.219,1.219,2.172,2.646,2.857,4.284.685,1.638,1.028,3.371,1.028,5.196s-.343,3.562-1.028,5.2-1.638,3.068-2.857,4.284c-1.219,1.219-2.646,2.172-4.284,2.857s-3.371,1.028-5.2,1.028-3.562-.343-5.196-1.028c-1.642-.685-3.068-1.638-4.288-2.857-1.219-1.215-2.168-2.646-2.853-4.284-.685-1.638-1.028-3.371-1.028-5.2Z" style="fill:#404040;" class="logo-dot" data-dot-index="4" tabindex="-1"/>
+      <path d="M16.475,263.856c0-1.825.343-3.558,1.028-5.196.685-1.638,1.634-3.064,2.853-4.284s2.646-2.172,4.288-2.857c1.634-.685,3.367-1.028,5.196-1.028s3.562.343,5.2,1.028c1.638.685,3.064,1.638,4.284,2.857,1.219,1.219,2.172,2.646,2.857,4.284.685,1.638,1.028,3.371,1.028,5.196s-.343,3.562-1.028,5.2-1.638,3.068-2.857,4.284c-1.219,1.219-2.646,2.172-4.284,2.857s-3.371,1.028-5.2,1.028-3.562-.343-5.196-1.028c-1.642-.685-3.068-1.638-4.288-2.857-1.219-1.215-2.168-2.646-2.853-4.284-.685-1.638-1.028-3.371-1.028-5.2Z" style="fill:#404040;" class="logo-dot" data-dot-index="5" tabindex="-1"/>
+      <g class="logo-text" style="fill:#404040;">
+        <path class="letter-d" d="M66.794,84.915v-43.289h15.652c12.29,0,24.763,5.136,24.763,21.522,0,15.225-12.351,21.767-24.273,21.767h-16.142ZM77.005,75.866h4.953c7.459,0,14.368-3.057,14.368-12.718,0-9.722-6.909-12.595-14.124-12.595h-5.197v25.313Z" />
+        <path class="letter-u" d="M112.931,73.298v-19.015h10.088v16.692c0,3.424.856,6.481,4.525,6.481,3.484,0,5.38-3.057,5.38-6.542v-16.631h10.027v30.632h-9.66v-4.219h-.122c-1.406,2.69-4.892,5.075-9.172,5.075-8.192,0-11.066-6.359-11.066-12.473Z" />
+        <path class="letter-n" d="M150.147,84.915v-30.632h9.722v4.219h.122c1.406-2.69,4.892-5.075,9.11-5.075,8.193,0,11.128,6.359,11.128,12.473v19.015h-10.089v-16.814c0-3.363-.917-6.42-4.524-6.42-3.546,0-5.38,3.057-5.38,6.542v16.692h-10.089Z" />
+        <path class="letter-e" d="M185.652,69.813c0-9.966,7.215-16.325,16.447-16.325,8.987,0,15.285,6.175,15.285,16.569,0,.795,0,1.651-.062,2.384h-22.072c.306,3.363,3.669,5.748,7.276,5.748,3.18,0,5.381-1.345,6.726-3.179l6.97,4.402c-2.873,4.158-7.643,6.481-13.817,6.481-9.172,0-16.753-5.809-16.753-16.081ZM208.152,66.206c0-3.179-2.018-5.809-5.992-5.809-3.852,0-6.664,2.69-6.909,5.809h12.901Z" />
+        <path class="letter-d" d="M221.394,69.568c0-8.499,5.503-15.958,14.368-15.958,4.463,0,7.582,2.079,9.294,4.097h.122v-19.015h10.027v46.223h-9.232v-3.974h-.122c-1.957,3.057-5.932,4.83-9.967,4.83-9.171,0-14.49-7.704-14.49-16.203ZM245.606,69.629c0-3.852-2.812-7.826-7.337-7.826-4.77,0-7.215,3.852-7.215,7.765,0,3.974,2.445,7.887,7.215,7.887,4.524,0,7.337-3.852,7.337-7.826Z" />
+        <path class="letter-i" d="M261.874,44.745c0-2.935,2.507-5.502,5.747-5.502,3.18,0,5.747,2.445,5.747,5.502,0,3.118-2.567,5.503-5.747,5.503-3.24,0-5.747-2.507-5.747-5.503ZM262.608,84.915v-30.632h10.027v30.632h-10.027Z" />
+        <path class="letter-n" d="M279.879,84.915v-30.632h9.722v4.219h.122c1.406-2.69,4.892-5.075,9.11-5.075,8.193,0,11.128,6.359,11.128,12.473v19.015h-10.089v-16.814c0-3.363-.917-6.42-4.524-6.42-3.546,0-5.38,3.057-5.38,6.542v16.692h-10.089Z" />
+        <path class="letter-s" d="M63.248,144.996l6.848-6.97c2.079,2.629,5.931,4.585,9.355,4.585,3.179,0,5.991-1.223,5.991-4.708,0-3.302-3.302-4.341-8.987-6.175-5.503-1.773-11.067-4.585-11.067-12.412,0-9.6,8.683-13.574,16.753-13.574,4.892,0,10.395,1.834,14.186,5.319l-6.665,7.031c-1.772-2.262-5.014-3.729-7.703-3.729s-6.054.917-6.054,4.341c0,2.874,2.568,3.852,6.665,5.075,5.931,1.773,13.451,4.402,13.451,13.023,0,9.966-8.01,14.43-16.569,14.43-6.176,0-12.412-2.262-16.203-6.236Z" />
+        <path class="letter-c" d="M99.933,134.908c0-9.905,7.521-16.203,16.997-16.203,4.341,0,8.927,1.65,11.312,4.096l-5.809,6.726c-1.101-1.467-3.302-2.445-5.319-2.445-4.219,0-7.031,3.607-7.031,7.826s2.751,7.765,7.153,7.765c2.018,0,4.219-.795,5.441-2.262l5.564,6.787c-2.507,2.445-6.787,3.913-11.25,3.913-9.6,0-17.059-6.114-17.059-16.203Z" />
+        <path class="letter-h" d="M131.969,150.132v-46.223h10.027v19.626h.122c1.346-2.446,4.524-4.708,8.744-4.708,8.254,0,11.127,6.359,11.127,12.473v18.832h-10.088v-16.508c0-3.424-.856-6.42-4.464-6.42-3.484,0-5.441,2.874-5.441,6.481v16.447h-10.027Z" />
+        <path class="letter-o" d="M167.296,134.785c0-9.966,7.704-16.08,16.875-16.08,9.232,0,16.937,6.114,16.937,16.08s-7.704,16.325-16.937,16.325c-9.171,0-16.875-6.359-16.875-16.325ZM191.446,134.785c0-3.913-2.567-7.765-7.275-7.765s-7.153,3.852-7.153,7.765,2.507,7.887,7.215,7.887,7.214-3.974,7.214-7.887Z" />
+        <path class="letter-o" d="M205.056,134.785c0-9.966,7.704-16.08,16.875-16.08,9.232,0,16.937,6.114,16.937,16.08s-7.704,16.325-16.937,16.325c-9.171,0-16.875-6.359-16.875-16.325ZM229.206,134.785c0-3.913-2.567-7.765-7.275-7.765s-7.153,3.852-7.153,7.765,2.507,7.887,7.215,7.887,7.214-3.974,7.214-7.887Z" />
+        <path class="letter-l" d="M244.595,150.132v-46.223h10.149v46.223h-10.149Z" />
+        <path class="letter-o" d="M64.716,200.002c0-9.966,7.704-16.08,16.875-16.08,9.232,0,16.937,6.114,16.937,16.08s-7.704,16.325-16.937,16.325c-9.171,0-16.875-6.359-16.875-16.325ZM88.866,200.002c0-3.913-2.567-7.765-7.275-7.765s-7.153,3.852-7.153,7.765,2.507,7.887,7.215,7.887,7.214-3.974,7.214-7.887Z" />
+        <path class="letter-f" d="M106.082,215.349v-23.112h-5.563v-7.521h5.563v-2.751c0-7.459,2.936-14.002,13.085-14.002,1.712,0,3.485.184,4.83.612l-.673,7.948c-.733-.245-1.772-.428-2.751-.428-3.669,0-4.464,2.935-4.464,5.747v2.874h6.787v7.521h-6.787v23.112h-10.027Z" />
+        <path class="letter-a" d="M165.513,172.06l17.976,43.289h-11.617l-3.363-8.499h-16.753l-3.179,8.499h-11.373l18.159-43.289h10.15ZM154.751,198.474h10.884l-5.381-14.858-5.503,14.858Z" />
+        <path class="letter-r" d="M186.653,215.349v-30.632h9.66v4.402h.123c1.528-3.057,4.524-5.258,8.254-5.258.795,0,1.65.062,2.14.245l-.428,8.805c-.917-.245-1.773-.306-2.568-.306-5.38,0-7.153,4.402-7.153,6.909v15.836h-10.027Z" />
+        <path class="letter-t" d="M213.5,205.26v-13.023h-4.892v-7.521h4.83v-7.948h9.844v7.948h7.154v7.521h-7.154v11.801c0,2.812.918,4.28,3.791,4.28.979,0,2.201-.184,2.936-.489l.122,7.337c-1.346.489-3.669.917-5.809.917-8.132,0-10.822-4.341-10.822-10.822Z" />
+      </g>
+    </svg>
+    <div id="dot-field"></div>
+  </main>
+  <script>
+    (() => {
+      // Edit these values to tune the sequence and the falling-dot physics.
+      const TIMING = Object.freeze({
+        // Time between individual dots and the empty-screen pause.
+        DOT_INTERVAL_MS: 1500,
+        EMPTY_PAUSE_MS: 8000,
+        FADE_DURATION_MS: 40
+      });
+      const PHYSICS = Object.freeze({
+        // Gravity is in pixels per second squared.
+        GRAVITY_PX_PER_SECOND_SQUARED: 1000,
+        // Velocity multipliers applied once per 60 Hz frame.
+        AIR_FRICTION_PER_FRAME: 0.99,
+        ROLL_FRICTION_PER_FRAME: 0.96,
+        // Fraction of vertical speed kept after hitting the floor.
+        BOUNCE: 0.45,
+        DOT_COLLISION_BOUNCE: 0.42,
+        // Starting sideways speed is this fraction of the viewport width.
+        HORIZONTAL_SPEED_SCREEN_RATIO: 0.05,
+        MIN_REST_SPEED_PX_PER_SECOND: 8
+      });
+      const COLOR_PALETTE = [
+        '#0f77df', '#c33e3e', '#35a77b', '#f0b429', '#7656c8',
+        '#ee7448', '#e76591', '#74a9d8'
+      ];
+      const DOT_Y = [49.981, 92.756, 135.531, 178.306, 221.081, 263.856];
+      const SVG_STEP = 42.775;
+      const SVG_DOT_X = 29.8;
+      const SVG_DOT_RADIUS = 13.67;
+
+      document.documentElement.style.setProperty('--fade-duration', `${TIMING.FADE_DURATION_MS}ms`);
+
+      const logo = document.getElementById('logo');
+      const field = document.getElementById('dot-field');
+      const sourceDots = [...logo.querySelectorAll('.logo-dot')]
+        .sort((a, b) => Number(a.dataset.dotIndex) - Number(b.dataset.dotIndex));
+      const visible = new Set();
+      const extraDots = new Map();
+      const particles = [];
+      let phase = 'black-growing';
+      let maxIndex = 5;
+      let nextIndex = 1;
+      let timer = 0;
+      let animationFrame = 0;
+      let lastFrameTime = 0;
+      let lastGeneratedColor = null;
+      let generatedColorCount = 0;
+      let hasNotClicked = true;
+
+      function metrics() {
+        const rect = logo.getBoundingClientRect();
+        const scale = rect.width / 320;
+        const step = SVG_STEP * scale;
+        const radius = SVG_DOT_RADIUS * scale;
+        const firstY = rect.top + DOT_Y[0] * scale;
+        return {
+          scale,
+          step,
+          radius,
+          firstY,
+          centerX: rect.left + SVG_DOT_X * scale,
+          max: Math.max(5, Math.floor((window.innerHeight - radius - firstY) / step))
+        };
+      }
+
+      function dotCenter(index) {
+        const m = metrics();
+        const y = index < DOT_Y.length
+          ? DOT_Y[index]
+          : DOT_Y[0] + index * SVG_STEP;
+        return {
+          x: m.centerX,
+          y: logo.getBoundingClientRect().top + y * m.scale,
+          radius: SVG_DOT_RADIUS * m.scale
+        };
+      }
+
+      function liveColoredCount() {
+        return visible.size + particles.length;
+      }
+
+      function isOccupied(index) {
+        return visible.has(index) || particles.some(particle => particle.index === index);
+      }
+
+      function nextAvailableIndex() {
+        for (let index = 0; index <= maxIndex; index += 1) {
+          if (!isOccupied(index)) return index;
+        }
+        return maxIndex + 1;
+      }
+
+      function schedule(callback, delay = TIMING.DOT_INTERVAL_MS) {
+        clearTimeout(timer);
+        timer = window.setTimeout(() => {
+          timer = 0;
+          callback();
+        }, delay);
+      }
+
+      function getDotNode(index) {
+        return index < sourceDots.length ? sourceDots[index] : extraDots.get(index);
+      }
+
+      function positionExtra(index, node) {
+        const center = dotCenter(index);
+        node.style.setProperty('--dot-diameter', `${center.radius * 2}px`);
+        node.style.left = `${center.x}px`;
+        node.style.top = `${center.y}px`;
+      }
+
+      function showDot(index, color = '#404040') {
+        if (visible.has(index)) return;
+        visible.add(index);
+        if (index < sourceDots.length) {
+          const node = sourceDots[index];
+          node.style.fill = color;
+          node.classList.remove('is-disappearing');
+          node.classList.add('is-visible');
+          node.tabIndex = 0;
+          node.setAttribute('role', 'button');
+          node.setAttribute('aria-label', `Dot ${index + 1}`);
+          return;
+        }
+        let node = extraDots.get(index);
+        if (!node) {
+          node = document.createElement('span');
+          node.className = 'extra-dot';
+          node.dataset.dotIndex = String(index);
+          node.setAttribute('role', 'button');
+          node.setAttribute('aria-label', `Dot ${index + 1}`);
+          node.tabIndex = 0;
+          extraDots.set(index, node);
+          field.append(node);
+          positionExtra(index, node);
+        }
+        node.style.backgroundColor = color;
+        node.classList.remove('is-disappearing');
+      }
+
+      function fadeOutDot(index) {
+        if (!visible.has(index)) return;
+        const node = getDotNode(index);
+        if (!node) return;
+        visible.delete(index);
+        node.classList.remove('is-visible');
+        node.classList.add('is-disappearing');
+        if (index < sourceDots.length) {
+          node.tabIndex = -1;
+          node.removeAttribute('role');
+          node.removeAttribute('aria-label');
+        } else {
+          node.tabIndex = -1;
+          node.removeAttribute('role');
+          node.removeAttribute('aria-label');
+        }
+        window.setTimeout(() => {
+          if (index >= sourceDots.length && !visible.has(index) && extraDots.get(index) === node) {
+            node.remove();
+            extraDots.delete(index);
+          } else if (index < sourceDots.length && !visible.has(index)) {
+            node.classList.remove('is-disappearing');
+          }
+        }, TIMING.FADE_DURATION_MS);
+      }
+
+      function blackDotClicked(index) {
+        if (!visible.has(index)) return;
+        const wasShrinking = phase === 'black-shrinking';
+        fadeOutDot(index);
+        if (phase === 'black-shrinking') phase = 'black-stopped';
+        if (visible.size === 0) beginBlackClear();
+      }
+
+      function beginBlackClear() {
+        if (phase === 'empty-wait' || phase.startsWith('color-')) return;
+        clearTimeout(timer);
+        timer = 0;
+        // for (const index of [...visible]) fadeOutDot(index);
+        schedule(() => {
+          phase = 'empty-wait';
+          schedule(startColorPhase, TIMING.EMPTY_PAUSE_MS);
+        }, TIMING.FADE_DURATION_MS);
+      }
+
+      function blackGrowStep() {
+        if (phase !== 'black-growing') return;
+        maxIndex = metrics().max;
+        if (nextIndex <= maxIndex) {
+          showDot(nextIndex, '#404040');
+          nextIndex += 1;
+          schedule(blackGrowStep);
+        } else if (hasNotClicked) {
+          phase = 'black-shrinking';
+          schedule(blackShrinkStep, TIMING.EMPTY_PAUSE_MS);
+        }
+      }
+
+      function blackShrinkStep() {
+        if (phase !== 'black-shrinking') return;
+        const indices = [...visible].sort((a, b) => b - a);
+        if (indices.length === 0) {
+          beginBlackClear();
+          return;
+        }
+        fadeOutDot(indices[0]);
+        if (visible.size === 0) beginBlackClear();
+        else schedule(blackShrinkStep);
+      }
+
+      function nextColor() {
+        let color;
+        if (generatedColorCount < 6) {
+          color = COLOR_PALETTE[generatedColorCount];
+        } else {
+          const choices = COLOR_PALETTE.filter(candidate => candidate !== lastGeneratedColor);
+          color = choices[Math.floor(Math.random() * choices.length)];
+        }
+        generatedColorCount += 1;
+        lastGeneratedColor = color;
+        return color;
+      }
+
+      function startColorPhase() {
+        phase = 'color-growing';
+        maxIndex = metrics().max;
+        generatedColorCount = 0;
+        showDot(0, nextColor());
+        nextIndex = 1;
+        schedule(colorGrowStep);
+      }
+
+      function startColorGrowth() {
+        clearTimeout(timer);
+        timer = 0;
+        phase = 'color-growing';
+        maxIndex = metrics().max;
+        nextIndex = nextAvailableIndex();
+        schedule(colorGrowStep);
+      }
+
+      function colorGrowStep() {
+        if (phase !== 'color-growing') return;
+        maxIndex = metrics().max;
+        while (nextIndex <= maxIndex && isOccupied(nextIndex)) nextIndex += 1;
+        if (nextIndex <= maxIndex) {
+          showDot(nextIndex, nextColor());
+          nextIndex += 1;
+          schedule(colorGrowStep);
+        } else if (hasNotClicked) {
+          generatedColorCount = 0;
+          phase = 'color-shrinking';
+          schedule(colorShrinkStep, TIMING.EMPTY_PAUSE_MS);
+        } else { generatedColorCount = 0; }
+      }
+
+      function colorShrinkStep() {
+        if (phase !== 'color-shrinking') return;
+        if (liveColoredCount() === 6 && hasNotClicked) return;
+        if (liveColoredCount() === 6) return;
+        if (liveColoredCount() <= 0) {
+          startColorGrowth();
+          return;
+        }
+        const indices = [...visible].sort((a, b) => b - a);
+        if (indices.length) fadeOutDot(indices[0], true);
+        schedule(colorShrinkStep);
+      }
+
+      function activateDot(index) {
+        hasNotClicked = false;
+        if (!visible.has(index)) return;
+        if (phase === 'black-growing' || phase === 'black-shrinking' || phase === 'black-stopped') {
+          blackDotClicked(index);
+        } else if (phase === 'color-growing' || phase === 'color-shrinking') {
+          releaseColoredDot(index);
+        }
+      }
+
+      function releaseColoredDot(index) {
+        const node = getDotNode(index);
+        if (!node || !visible.has(index)) return;
+        const center = dotCenter(index);
+        const color = index < sourceDots.length ? node.style.fill : node.style.backgroundColor;
+        visible.delete(index);
+        node.classList.remove('is-visible');
+        node.classList.add('is-disappearing');
+        node.tabIndex = -1;
+        node.removeAttribute('role');
+        node.removeAttribute('aria-label');
+        window.setTimeout(() => {
+          if (index >= sourceDots.length && !visible.has(index) && extraDots.get(index) === node) {
+            node.remove();
+            extraDots.delete(index);
+          } else if (index < sourceDots.length && !visible.has(index)) {
+            node.classList.remove('is-disappearing');
+          }
+        }, TIMING.FADE_DURATION_MS);
+
+        const moving = document.createElement('span');
+        moving.className = 'loose-dot';
+        moving.style.setProperty('--dot-diameter', `${center.radius * 2}px`);
+        moving.style.backgroundColor = color;
+        moving.style.left = `${center.x}px`;
+        moving.style.top = `${center.y}px`;
+        moving.setAttribute('aria-hidden', 'true');
+        field.append(moving);
+        // const direction = center.x < window.innerWidth / 2 ? 1 : -1;
+        const xDirection = Math.random() < 0.5 ? 1 : -1;
+        // const xSpeed = window.innerWidth * PHYSICS.HORIZONTAL_SPEED_SCREEN_RATIO * (0.65 + Math.random() * 0.7);
+        const xSpeed = window.innerWidth * PHYSICS.HORIZONTAL_SPEED_SCREEN_RATIO * (0.65 + Math.random() * 0.7);
+        particles.push({
+          index,
+          x: center.x,
+          y: center.y,
+          vx: xDirection * xSpeed,
+          vy: 0,
+          radius: center.radius,
+          color,
+          element: moving,
+          landed: false,
+          sleeping: false
+        });
+        startPhysics();
+      }
+
+      function collideWithStationary(moving, stationaryX, stationaryY, stationaryRadius) {
+        let dx = moving.x - stationaryX;
+        let dy = moving.y - stationaryY;
+        let distance = Math.hypot(dx, dy);
+        const minimum = moving.radius + stationaryRadius;
+        if (distance >= minimum) return;
+        if (distance === 0) {
+          dx = 1;
+          dy = 0;
+          distance = 1;
+        }
+        const nx = dx / distance;
+        const ny = dy / distance;
+        moving.x = stationaryX + nx * minimum;
+        moving.y = stationaryY + ny * minimum;
+        const toward = moving.vx * nx + moving.vy * ny;
+        if (toward < 0) {
+          const impulse = (1 + PHYSICS.DOT_COLLISION_BOUNCE) * toward;
+          moving.vx -= impulse * nx;
+          moving.vy -= impulse * ny;
+          moving.sleeping = false;
+        }
+      }
+
+      function collideMoving(a, b) {
+        let dx = b.x - a.x;
+        let dy = b.y - a.y;
+        let distance = Math.hypot(dx, dy);
+        const minimum = a.radius + b.radius;
+        if (distance >= minimum) return;
+        if (distance === 0) {
+          dx = 1;
+          dy = 0;
+          distance = 1;
+        }
+        const nx = dx / distance;
+        const ny = dy / distance;
+        const overlap = minimum - distance;
+        a.x -= nx * overlap / 2;
+        a.y -= ny * overlap / 2;
+        b.x += nx * overlap / 2;
+        b.y += ny * overlap / 2;
+        const relative = (b.vx - a.vx) * nx + (b.vy - a.vy) * ny;
+        if (relative < 0) {
+          const impulse = -(1 + PHYSICS.DOT_COLLISION_BOUNCE) * relative / 2;
+          a.vx -= impulse * nx;
+          a.vy -= impulse * ny;
+          b.vx += impulse * nx;
+          b.vy += impulse * ny;
+          a.sleeping = false;
+          b.sleeping = false;
+        }
+      }
+
+      function startPhysics() {
+        if (animationFrame) return;
+        lastFrameTime = performance.now();
+        animationFrame = requestAnimationFrame(stepPhysics);
+      }
+
+      function stepPhysics(now) {
+        const dt = Math.min((now - lastFrameTime) / 1000, 0.032);
+        lastFrameTime = now;
+        const floorEnabled = liveColoredCount() <= 6;
+        for (const moving of particles) {
+          if (moving.sleeping) continue;
+          moving.vx *= Math.pow(PHYSICS.AIR_FRICTION_PER_FRAME, dt * 60);
+          moving.vy += PHYSICS.GRAVITY_PX_PER_SECOND_SQUARED * dt;
+          moving.x += moving.vx * dt;
+          moving.y += moving.vy * dt;
+
+          for (const index of visible) {
+            const stationary = dotCenter(index);
+            collideWithStationary(moving, stationary.x, stationary.y, stationary.radius);
+          }
+        }
+
+        for (let i = 0; i < particles.length; i += 1) {
+          for (let j = i + 1; j < particles.length; j += 1) collideMoving(particles[i], particles[j]);
+        }
+
+        for (let i = particles.length - 1; i >= 0; i -= 1) {
+          const moving = particles[i];
+          const floorY = window.innerHeight - moving.radius;
+          if (floorEnabled && moving.y >= floorY) {
+            moving.y = floorY;
+            moving.landed = true;
+            if (moving.vy > 0) {
+              const rebound = moving.vy * PHYSICS.BOUNCE;
+              moving.vy = rebound < PHYSICS.MIN_REST_SPEED_PX_PER_SECOND ? 0 : -rebound;
+              moving.landed = false;
+            }
+          }
+          if (moving.landed) {
+            moving.vx *= Math.pow(PHYSICS.ROLL_FRICTION_PER_FRAME, dt * 60);
+            if (Math.abs(moving.vx) < PHYSICS.MIN_REST_SPEED_PX_PER_SECOND) moving.vx = 0;
+            if (Math.abs(moving.vy) < PHYSICS.MIN_REST_SPEED_PX_PER_SECOND) moving.vy = 0;
+            if (moving.vx === 0 && moving.vy === 0) moving.sleeping = true;
+          }
+          if (!floorEnabled && moving.y - moving.radius > window.innerHeight) {
+            moving.element.remove();
+            particles.splice(i, 1);
+            continue;
+          }
+          moving.element.style.left = `${moving.x}px`;
+          moving.element.style.top = `${moving.y}px`;
+        }
+
+        const needsFrame = particles.some(moving => !moving.sleeping);
+        if (needsFrame) animationFrame = requestAnimationFrame(stepPhysics);
+        else animationFrame = 0;
+      }
+
+      logo.addEventListener('click', event => {
+        const dot = event.target.closest?.('.logo-dot');
+        if (dot) activateDot(Number(dot.dataset.dotIndex));
+      });
+      logo.addEventListener('keydown', event => {
+        const dot = event.target.closest?.('.logo-dot');
+        if (dot && (event.key === 'Enter' || event.key === ' ')) {
+          event.preventDefault();
+          activateDot(Number(dot.dataset.dotIndex));
+        }
+      });
+      field.addEventListener('click', event => {
+        const dot = event.target.closest?.('.extra-dot');
+        if (dot) activateDot(Number(dot.dataset.dotIndex));
+      });
+      field.addEventListener('keydown', event => {
+        const dot = event.target.closest?.('.extra-dot');
+        if (dot && (event.key === 'Enter' || event.key === ' ')) {
+          event.preventDefault();
+          activateDot(Number(dot.dataset.dotIndex));
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        maxIndex = metrics().max;
+        for (const [index, dot] of extraDots) positionExtra(index, dot);
+      }, { passive: true });
+
+      showDot(0, '#404040');
+      schedule(blackGrowStep);
+
+
+      function initKeySpecificLetterOpacity() {
+        // Helpers to check if a pressed key is a specific letter
+        const isLetterSmall = (key) => /^[duneischolfart]$/.test(key);
+        const isLetterBig = (key) => /^[DUNEISCHOLFART]$/.test(key);
+
+        // Helper to find elements whose class starts with "letter-" followed by the specific letter
+        const getTargetElements = (letter) => {
+          return document.querySelectorAll(
+            `[class^="letter-${letter}"], [class*=" letter-${letter}"]`
+          );
+        };
+
+        // Handle keydown: set opacity to 0 for small letters
+        window.addEventListener('keydown', (event) => {
+          if (event.repeat) return; // Prevent rapid firing if key is held down
+          if (!isLetterSmall(event.key)) return;
+          const letter = event.key.toLowerCase();
+          getTargetElements(letter).forEach((el) => {
+            el.style.opacity = '0';
+          });
+        });
+        // Keydown: set colour for uppercase letters
+        window.addEventListener('keydown', (event) => {
+          if (event.repeat) return; // Prevent rapid firing if key is held down
+          if (!isLetterBig(event.key)) return;
+          const letter = event.key.toLowerCase();
+          getTargetElements(letter).forEach((el) => {
+            el.style.fill = nextColor();
+          });
+        });
+
+        // Handle keyup: restore opacity back to 1 for small letters
+        window.addEventListener('keyup', (event) => {
+          if (!isLetterSmall(event.key)) return;
+          const letter = event.key.toLowerCase();
+          getTargetElements(letter).forEach((el) => {
+            el.style.opacity = '1';
+          });
+        });
+      }
+      initKeySpecificLetterOpacity();
+
+    })();
+  </script>
+</body>
+</html>
