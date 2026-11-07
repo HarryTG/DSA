@@ -565,7 +565,7 @@
 
         // Handle keyup: restore opacity back to 1 for small letters
         window.addEventListener('keyup', (event) => {
-          if (!isLetterSmall(event.key)) return;
+          if (!isLetterSmall(event.key) && !isLetterBig(event.key)) return;
           const letter = event.key.toLowerCase();
           getTargetElements(letter).forEach((el) => {
             el.style.opacity = '1';
